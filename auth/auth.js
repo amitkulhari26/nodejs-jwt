@@ -6,12 +6,9 @@ module.exports.verifyToken = function verifyToken(req, res, next) {
 
     if (!token) return res.status('401').send({ 'auth': false, message: 'No Token Provided' });
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRETKEY, (error, payload) => {
-        if (error) {
-            console.log(error);
-            return res.status(500).send({ 'auth': false, message: 'Failed to Authnticate Token' });
-        } else {
-            req.user = payload;
-            next();
-        }
+        if (error) return res.status(500).send({ 'auth': false, message: 'Failed to Authnticate Token' });
+        req.user = payload;
+        next();
+
     });
 };
