@@ -26,3 +26,13 @@ expo.findUser = (req, res) => {
         res.status(200).json(user);
     });
 };
+expo.loginUser = (req, res) => {
+    userCRUD.load({ 'email': req.body.email }, (error, user) => {
+        if (error) return res.status(500).send('Server Error');
+        if (!user) return res.status(404).send('User not found');
+        const passwordIsValid = bcrypt.compareSync(req.body.password, user[0].password);
+        if (!passwordIsValid) return res.status(401).send('Password is inavalid');
+        const token = jwt.sign({ id: user[0].id }, process.env.ACCESS_TOKEN_SECRETKEY, { 'expiresIn': 86400 });
+        res.send({ 'auth': true, token: token, user: user[0] });
+    });
+};

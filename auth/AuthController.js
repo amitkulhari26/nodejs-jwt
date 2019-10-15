@@ -13,5 +13,8 @@ router
 router
     .route('/me')
     .get(verifyToken.verifyToken, UserController.findUser);
+router
+    .route('/login')
+    .post(UserController.loginUser);
 
 module.exports = router;
