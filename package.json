@@ -1,0 +1,25 @@
+{
+  "name": "jwt",
+  "version": "1.0.0",
+  "description": "NodeJs app to understand Json Web Token",
+  "main": "server.js",
+  "scripts": {
+    "devStart": "node server.js"
+  },
+  "keywords": [
+    "jwt",
+    "nodejs",
+    "expressjs"
+  ],
+  "author": "Amit Kulhari",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql-crud": "^0.1.4",
+    "path": "^0.12.7"
+  }
+}
